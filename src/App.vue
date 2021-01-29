@@ -1,16 +1,50 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="App" class="container">
+    <tareas v-bind:tareas = "tareas"/>
+    <formularioTareas @enviarTarea="agregarTarea" />
+    
+  </div>
+  
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import tareas from "./components/tareas.vue";
+import formularioTareas from "./components/formulario";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
+    tareas,
+    formularioTareas
+  },
+
+  data() {
+    return {
+      tareas: [
+        { id: 1, nombre: "lectura", tiempo: "1 hora", colaborador: "Felicidad" },
+        {
+          id: 2,
+          nombre: "poner la lavadora",
+          tiempo: "hora y media",
+          colaborador: "Colon",
+        },
+        {
+          id: 3,
+          nombre: "hacer cookies",
+          tiempo: "2 horas",
+          colaborador: "Colesterol",
+        },
+      ],
+    };
+  },
+};
+
+method:{
+  agregarTarea(tarea){
+    this.tareas=[this.tareas, tarea],
+
   }
+
 }
 </script>
 
